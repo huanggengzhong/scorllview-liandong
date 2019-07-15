@@ -1,0 +1,32 @@
+<!-- 左边的菜单 -->
+<view class="foodmenu">
+  <view class="item {{index==cateListActiveIndex && 'active'}}" bindtap="scrollToCategory" wx:for="{{goods}}" data-index="{{index}}" data-foodCount="{{item.items.length}}" wx:key="title">
+    {{item.title}} ({{item.items.length}})
+  </view>
+</view>
+
+<!-- 右边菜品 -->
+<scroll-view class="goods_wrap" scroll-top="{{listViewScrollTop}}" bindscroll="foodListScrolling" scroll-y>
+  <block wx:for="{{goods}}" wx:key="title">
+    <view class="category_title">{{item.title}}</view>
+    <view class="content">
+      <view class="food" wx:for="{{item.items}}" wx:for-item="food" wx:for-index="foodindex" wx:key="{{food.id}}">
+        <image src="{{food.image}}" data-url="{{food.image}}" bindtap="bindImgPreView" />
+      </view>
+    </view>
+
+  </block>
+
+</scroll-view>
+
+
+
+
+
+
+<!-- 大图层 -->
+<view class="preview_image" hidden="{{hidePreview}}" bindtap="hideIMgpreview">
+  <!-- <image src="{{preImageUrl}}"  style="width:100%" /> -->
+</view>
+
+<!-- ***********************************wxs******************************* -->
